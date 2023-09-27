@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 
 # Load the train and test datasets to create two DataFrames
 train_url = "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/train.csv"
-train = pd.read_csv("Lab1/train.csv")
+train = pd.read_csv(train_url)
 test_url = "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/test.csv"
-test = pd.read_csv("Lab1/test.csv")
+test = pd.read_csv(test_url)
 
 ## =======================================================================================
 # # print("***** Train_Set *****")
@@ -96,5 +96,62 @@ test = pd.read_csv("Lab1/test.csv")
 # plt.show()
 
 ## =======================================================================================
+print("\n")
 train.info()
-train.fillna(train.mean(), inplace=True)
+print("\n")
+print("*****In the train set, nr of NaN*****")
+print(train.isna().sum())
+print("\n")
+print("*****In the test set, nr of NaN*****")
+print(test.isna().sum())
+print("\n")
+
+train['Age'].fillna(train['Age'].mean(), inplace=True)
+test['Age'].fillna(test['Age'].mean(), inplace=True)
+
+print("\n")
+print("*****New*****")
+print("*****In the train set, nr of NaN*****")
+print(train.isna().sum())
+print("\n")
+print("*****In the test set, nr of NaN*****")
+print(test.isna().sum())
+print("\n")
+
+# Features Name, Ticket, Cabin and Embarked can be dropped and they will not have significant impact on the training 
+# of the K-Means model (have no impact on the survival status of the passengers).
+
+train = train.drop(['Name','Ticket', 'Cabin','Embarked'], axis=1)
+test = test.drop(['Name','Ticket', 'Cabin','Embarked'], axis=1)
+
+labelEncoder = LabelEncoder()
+labelEncoder.fit(train['Sex'])
+labelEncoder.fit(test['Sex'])
+train['Sex'] = labelEncoder.transform(train['Sex'])
+test['Sex'] = labelEncoder.transform(test['Sex'])
+
+print("\n")
+print("*****Engineering of train info*****")
+train.info()
+
+## Training of the K-Means model
+## Droops the survival data
+X = np.array(train.drop(['Survived'], 1).astype(float)) 
+y = np.array(train['Survived'])
+
+## Build the K-Means model
+## Cluster the passenger records into 2: Survived or Not survived
+kmeans = KMeans(n_clusters=2)
+kmeans.fit(X)
+KMeans(algorithm='lloyd', copy_x=True, init='k-means++', max_iter=300, n_clusters=2, n_init=10, random_state=None, tol=0.0001, verbose=0)
+
+
+correct = 0
+for i in range(len(X)):
+    predict_me = np.array(X[i].astype(float))
+    predict_me = predict_me.reshape(-1, len(predict_me))
+    prediction = kmeans.predict(predict_me)
+    if prediction[0] == y[i]:
+        correct += 1
+
+print(correct/len(X))
