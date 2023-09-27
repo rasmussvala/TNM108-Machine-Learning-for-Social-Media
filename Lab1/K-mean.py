@@ -136,8 +136,8 @@ train.info()
 
 ## Training of the K-Means model
 ## Droops the survival data
-X = np.array(train.drop(['Survived'], 1).astype(float)) 
 y = np.array(train['Survived'])
+X = np.array(train.drop(['Survived'], axis=1).astype(float)) 
 
 ## Build the K-Means model
 ## Cluster the passenger records into 2: Survived or Not survived
