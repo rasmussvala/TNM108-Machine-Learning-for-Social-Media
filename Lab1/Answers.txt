@@ -1,0 +1,56 @@
+Part 1: K-Means Clustering
+1. What are the relevant features of the Titanic dataset. Why are they relevant?
+    Relevant features are (as an example: Rclass (class), Sex, Age, Cabin) and i relevant because
+    they can have a connection to a human surviving or not surviving the accident.
+
+2. Can you find a parameter configuration to get a validation score greater than 62%?
+    No (tweeked, algorithm{“lloyd”, “elkan”, “auto”, “full”}, default=”lloyd”} and max_iter)
+
+3. What are the advantages/disadvantages of K-Means clustering?
+    Advantages:
+    * Simpel to implemnt and is fast.
+    * Can handle large datasets.
+    * Good with well defined groups.
+
+    Disadvantages:
+    * Outliers will offset the centroid
+    * The number of clusters (k) must be defined BEFORE the algorithm is performed on the data 
+
+
+4. How can you address the weaknesses?
+    Outliers: Make sure the data set is well set up and that it somewhat mirrors the real data (based on studies about the real data).
+    Number of clusters: Study the data and try to get the amount of possible clusters (without putting much effort in it)  
+
+Part 2: Hierarchical Clustering
+1. How many clusters do you have? Explain your answer.
+    We look at the diagram (using the word method) and draw the line at 200, thus giving us 5 diadorams. 
+    
+    When you know the number of clusters for the shopping dataset, you can group the data points with respect
+    to these clusters. To do so use the AgglomerativeClustering class of the sklearn.cluster library.
+
+2. Plot the clusters to see how actually the data has been clustered.
+    Done
+
+3. What can you conclude by looking at the plot?
+    A big group around (50, 50) spends as much as the earn. There are some people that rather spend a lot and earn
+    small amount and vice versa. Most people follows the line x = y.
+
+Part 3: PCA
+1. Can you choose n components=2? Can you think of some method to test this?
+   (question at page 6)
+    Yes, you can check with this code:
+        ex_variance=np.var(X_pca,axis=0)
+        ex_variance_ratio = ex_variance/np.sum(ex_variance)
+        print(ex_variance_ratio)
+    that gives output:
+        [0.60950217 0.2611802 0.12931763]
+    The first 2 components contributes to 87% and thus making the last not that necesary.
+
+2. Create the scatter plot of the third principal component (that is, you combine the third
+   principal component with the first and then the second principal component). What can
+   you see with the plot? What is the difference?
+   (question at page 7)
+   One of them displays more of the outliers.
+
+3. Can you tell which feature contribute more towards the 1st PC?
+   (question at page 8)

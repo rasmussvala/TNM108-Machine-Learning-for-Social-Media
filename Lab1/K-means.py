@@ -1,3 +1,5 @@
+## Nice link to se K-mean: https://ivanludvig.github.io/kmeans/
+
 # Be sure to pip install: pandas, NumPy, scikit-learn, Seaborn and Matplotlib.
 # Dependencies
 import pandas as pd
@@ -145,6 +147,21 @@ kmeans = KMeans(n_clusters=2)
 kmeans.fit(X)
 KMeans(algorithm='lloyd', copy_x=True, init='k-means++', max_iter=300, n_clusters=2, n_init=10, random_state=None, tol=0.0001, verbose=0)
 
+correct = 0
+for i in range(len(X)):
+    predict_me = np.array(X[i].astype(float))
+    predict_me = predict_me.reshape(-1, len(predict_me))
+    prediction = kmeans.predict(predict_me)
+    if prediction[0] == y[i]:
+        correct += 1
+
+print("Simpel model")
+print(correct/len(X) )# 0.5084175084175084
+print("\n")
+
+kmeans = kmeans = KMeans(n_clusters=2, max_iter=600, algorithm = 'lloyd')
+kmeans.fit(X)
+KMeans(algorithm='lloyd', copy_x=True, init='k-means++', max_iter=600, n_clusters=2, n_init=10, random_state=None, tol=0.0001, verbose=0)
 
 correct = 0
 for i in range(len(X)):
@@ -154,4 +171,22 @@ for i in range(len(X)):
     if prediction[0] == y[i]:
         correct += 1
 
+print("Simpel model (tweaked)")
+print(correct/len(X))
+print("\n")
+
+scaler = MinMaxScaler()
+X_scaled = scaler.fit_transform(X)
+kmeans.fit(X_scaled)
+KMeans(algorithm='lloyd', copy_x=True, init='k-means++', max_iter=600,
+ n_clusters=2, n_init=10, random_state=None, tol=0.0001, verbose=0)
+correct = 0
+for i in range(len(X)):
+    predict_me = np.array(X[i].astype(float))
+    predict_me = predict_me.reshape(-1, len(predict_me))
+    prediction = kmeans.predict(predict_me)
+    if prediction[0] == y[i]:
+        correct += 1
+
+print("Simpel model (tweaked and range [0,1])")
 print(correct/len(X))
