@@ -37,6 +37,10 @@ Part 2: Hierarchical Clustering
 1. How many clusters do you have? Explain your answer.
     
     Answer: We look at the diagram (using the ward method) and draw the line at 200, thus giving us 5 dendrograms. 
+
+    Note:   If we have long and skinny clusters we want the distance of the closest members. 
+            If we have tight clusters we want the distance of the furthest members. 
+            Otherwise we use avg distance of clusters 
     
 When you know the number of clusters for the shopping dataset, you can group the data points with respect
 to these clusters. To do so use the AgglomerativeClustering class of the sklearn.cluster library.
@@ -75,7 +79,6 @@ Part 3: PCA
    (question at page 7)
 
    Answer: One of them displays more of the outliers (extream values), we also see a clear line x=y.
-
 
 3. Can you tell which feature contribute more towards the 1st PC?
    (question at page 8)
