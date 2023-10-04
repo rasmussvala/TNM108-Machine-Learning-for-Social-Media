@@ -1,0 +1,32 @@
+Part 1: Linear Regression
+1. When can you use linear regression?
+
+2. How can you generalize linear regression models to account for more complex relationships among the data?
+
+3. What are the basis functions?
+
+4. How many basis functions can you use in the same regression model?
+
+5. Can overfitting be a problem? And if so, what can you do about it?
+
+Part 2: K-Nearest Neighbor (KNN)
+1. Why choosing a good value for k is important in KNN?
+
+2. How can you decide a good value for k?
+
+3. Can you use KNN to classify non-linearly separable data?
+
+4. Is KNN sensible to the number of features in the dataset?
+
+5. Can you use KNN for a regression problem?
+
+6. What are the Pros and Cons of KNN?
+
+Part 3: Support Vector Machines (SVM)
+1. What is the basic idea/intuition of SVM?
+
+2. What can you do if the dataset is not linearly separable?
+
+3. Explain the concept of Soften Margins
+
+4. What are the pros and cons of SVM?
