@@ -67,10 +67,25 @@ print(ex_variance_ratio)
 
 
 
+#Create the two principal components.
 # Xax=X_pca[:,0]
 # Yax=X_pca[:,1]
-Xax=X_pca[:,0]
-Yax=X_pca[:,2]
+
+# PC 1,3
+# Xax=X_pca[:,0]
+# Yax=X_pca[:,2]
+
+
+# PC 2,3
+# Xax=X_pca[:,1]
+# Yax=X_pca[:,2]
+
+#Combine the PCA components with the third:
+Xax=X_pca[:,0]+X_pca[:,2]
+Yax=X_pca[:,1]+X_pca[:,2]
+
+
+
 labels=cancer.target
 cdict={0:'red',1:'green'}
 labl={0:'Malignant',1:'Benign'}
@@ -84,6 +99,7 @@ for l in np.unique(labels):
 plt.xlabel("First Principal Component",fontsize=14)
 plt.ylabel("Second Principal Component",fontsize=14)
 plt.legend()
+print("Now we show 3 component")
 plt.show()
 
 
@@ -100,6 +116,15 @@ plt.show()
 
 
 feature_worst=list(cancer_df.columns[20:31]) # select the 'worst' features
+import seaborn as sns
+s=sns.heatmap(cancer_df[feature_worst].corr(),cmap='coolwarm')
+s.set_yticklabels(s.get_yticklabels(),rotation=30,fontsize=7)
+s.set_xticklabels(s.get_xticklabels(),rotation=30,fontsize=7)
+plt.show()
+
+
+
+feature_worst=list(cancer_df.columns[1:10]) # select the 'best' features
 import seaborn as sns
 s=sns.heatmap(cancer_df[feature_worst].corr(),cmap='coolwarm')
 s.set_yticklabels(s.get_yticklabels(),rotation=30,fontsize=7)
