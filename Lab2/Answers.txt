@@ -1,13 +1,33 @@
 Part 1: Linear Regression
 1. When can you use linear regression?
 
+    When we want to approximate a function from a dataset. 
+
 2. How can you generalize linear regression models to account for more complex relationships among the data?
+
+    We can generalize linear regression by a polynomial basis or gaussian basis (there is more, but these 
+    are the ones we go through in the paper).    
 
 3. What are the basis functions?
 
+    Polynomial basis and Gaussian basis (there is more, but these 
+    are the ones we go through in the paper).    
+
 4. How many basis functions can you use in the same regression model?
 
+    There is no limit. But using more than necessary can lead to overfitting. 
+
 5. Can overfitting be a problem? And if so, what can you do about it?
+
+    Yes, overfitting is a problem because the model is trying to fit the training data too closely, thus 
+    leading to a bad generalization of the data. 
+
+    Solutions: 
+
+    * Create a simpler model. 
+
+    * Regularization - apply Ridge Regression or Lasso Regression.
+      What is does is adding penalty terms, discouraging the model from assigning too large coefficients to variables. 
 
 Part 2: K-Nearest Neighbor (KNN)
 1. Why choosing a good value for k is important in KNN?
