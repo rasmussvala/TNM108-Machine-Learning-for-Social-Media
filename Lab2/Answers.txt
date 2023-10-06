@@ -78,8 +78,29 @@ Part 2: K-Nearest Neighbor (KNN)
 Part 3: Support Vector Machines (SVM)
 1. What is the basic idea/intuition of SVM?
 
+    The main idea of SVM is to find hyperplanes that separates data points into classes.The ideal 
+    case is to maximize the margins (giving better seperation betwen the classes).
+
 2. What can you do if the dataset is not linearly separable?
+
+    Use the Kernal trick which gives a non linear boundary separating the data points
 
 3. Explain the concept of Soften Margins
 
+    We can use the C parameter (good for overlap). 
+    
+    C -> large: small margins 
+    C -> small: large margins 
+
 4. What are the pros and cons of SVM?
+
+    Pros:
+    * Take very little memory.
+    * Once the model is trained, the prediction phase is very fast.
+    * Works well with high dimensionall data (because they are affected only by points near the margin).
+    * If a clear margin is given, SVM works realy well
+
+    Cons:
+    * Big data sets gives high training time
+    * Dont handel noise well
+    * Have no probobility estimation
