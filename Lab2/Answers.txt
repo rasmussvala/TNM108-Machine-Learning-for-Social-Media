@@ -32,15 +32,48 @@ Part 1: Linear Regression
 Part 2: K-Nearest Neighbor (KNN)
 1. Why choosing a good value for k is important in KNN?
 
+    It is important!
+    
+    Choosing a small value for k kan lead to underfitting, where to model captures random fluctuation
+    rather than the underlying patterns. 
+
+    Choosing a large value for k kan lead to overfitting, where the model fails to capture important
+    local patterns in the data.
+
 2. How can you decide a good value for k?
+
+    There are multible ways of doing it:
+
+    * Choose an odd value of k for 2 class problem as it will not be able to spit in two equals 
+    * k must not be multiple of number of classes. 
+    * Trail and error: test different k and evaluate the fitting.  
+    * Elbow Method: Plot error rate agains different k:s in a test set. Than choose the k value that is located 
+      in the "elbow". 
 
 3. Can you use KNN to classify non-linearly separable data?
 
+    Yes (according to the lab2 instructions - search nonlinear to find it).
+
 4. Is KNN sensible to the number of features in the dataset?
+
+    Yes, if there are a lot of features and possible noise in the labels, the decision will become overfitting
+    (look at lecture 3) 
 
 5. Can you use KNN for a regression problem?
 
+    Yes. 
+
 6. What are the Pros and Cons of KNN?
+
+    Pros: 
+    * No need for training 
+    * Can be used to nonlinear problems and regression problems 
+    * Fast 
+
+    Cons: 
+    * Testing phase is slow and costlier, need a lot of memory to for storing training dataset
+    * Euclidean distance is sensitive to magnitudes, high magnitudes weight more 
+
 
 Part 3: Support Vector Machines (SVM)
 1. What is the basic idea/intuition of SVM?
