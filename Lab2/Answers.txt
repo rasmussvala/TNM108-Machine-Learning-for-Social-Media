@@ -61,7 +61,7 @@ Part 2: K-Nearest Neighbor (KNN)
 
 5. Can you use KNN for a regression problem?
 
-    Yes. 
+    Yes, we can take the k nearest values of the target variable and compute the mean of those values. 
 
 6. What are the Pros and Cons of KNN?
 
@@ -71,7 +71,7 @@ Part 2: K-Nearest Neighbor (KNN)
     * Fast 
 
     Cons: 
-    * Testing phase is slow and costlier, need a lot of memory to for storing training dataset
+    * Testing phase is slow and costlier, need a lot of memory to store training dataset
     * Euclidean distance is sensitive to magnitudes, high magnitudes weight more 
 
 
@@ -88,6 +88,8 @@ Part 3: Support Vector Machines (SVM)
 3. Explain the concept of Soften Margins
 
     We can use the C parameter (good for overlap). 
+    The C parameter decides how much the SVM should care about getting everything right vs
+    getting the things that is right *very* right. 
     
     C -> large: small margins 
     C -> small: large margins 
@@ -102,5 +104,5 @@ Part 3: Support Vector Machines (SVM)
 
     Cons:
     * Big data sets gives high training time
-    * Dont handel noise well
-    * Have no probobility estimation
+    * Don't handle noise well
+    * Have no probability estimation
