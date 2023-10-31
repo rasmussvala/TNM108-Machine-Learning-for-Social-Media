@@ -47,6 +47,9 @@ PART 2
     If you decrease max_features, the model will be more conservative and prone to underfitting. 
     It may not capture complex patterns in the data but is less likely to overfit.
 
-4. 
+4. How could performance of random forest be improved?
+
+    To improve the performance of the random forest you could create a "boosted classifier" that simply give higher importance 
+    or weight to classifier that perform well. 
 
 PART 3
