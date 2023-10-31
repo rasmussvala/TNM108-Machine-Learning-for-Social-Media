@@ -1,0 +1,52 @@
+PART 1: Bayes Classification
+
+Simplicity: It is a simple and fast classification algorithm suitable for high-dimensional datasets.Simplicity: It is a simple and fast classification algorithm suitable for high-dimensional datasets.
+
+Bayesian Foundation: It is based on Bayesian classification methods, using Bayes's theorem to calculate conditional probabilities.
+
+Independence Assumption: The "Naive" part of its name comes from the assumption that features are statistically independent.
+
+Objective: It predicts the class or label of a sample based on its observed features.
+
+Components: It combines the Prior Probability (probability of a class before considering new data) and the Likelihood (probability of features given the class) to calculate the Posterior Probability.
+
+Normal Distribution: It assumes that features are normally distributed (follow a Gaussian distribution).
+
+Predictor Prior Probability: It also factors in the Predictor Prior Probability, representing the marginal probability of data under all possible features for each class.
+
+PART 2
+
+1. Explain what the program does: 
+    
+    It tries to complete the lower half of the face by using different algorithms. It uses a training set to train the different 
+    algorithms and then outputs the different faces with the different methods.
+
+2. What is your interpretation of the final plot? Which algorithm has better performance
+    in building the unknown parts of the face?
+
+    There is no clear winner on who has the better performance and you could argue that in some cases a algorithm performs better
+    and in other cases in performs worse. But the algorithm we think have the most reliable result is the Ridge algorithm.This
+    is because we think this algorithm follows the lines of the face better then the rest of the algorithms. 
+    
+3. How do you interpret the results?
+
+    n_estimators:
+
+    If you increase n_estimators, you get a more robust model that might have better generalization performance. 
+    However, it also increases computational complexity and may lead to overfitting if set too high.
+
+    If you decrease n_estimators, the model may be less robust, but it will be faster to train and make predictions.
+    There's a trade-off between model complexity and performance.
+
+    max_features:
+
+    If you increase max_features, the model may become more expressive, but it could also lead to overfitting, 
+    especially if the dataset has a large number of features. However, it can help the model capture more complex 
+    relationships in the data.
+
+    If you decrease max_features, the model will be more conservative and prone to underfitting. 
+    It may not capture complex patterns in the data but is less likely to overfit.
+
+4. 
+
+PART 3
