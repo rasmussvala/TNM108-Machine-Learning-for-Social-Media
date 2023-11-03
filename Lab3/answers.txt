@@ -53,3 +53,16 @@ PART 2
     or weight to classifier that perform well. 
 
 PART 3
+
+1. Did shuffle make it better?
+
+    Yes, probably because randomizing the data before cross-validation can help ensure that the 
+    performance evaluation is less sensitive to the order of the data points
+
+2. What happens if you do reshuffling and RFE? do you get better results than only reshuffling?
+
+    They are basically the same. 
+
+3. Find out if there are ML algorithms that perform better on the data cars.csv data set
+
+    hej 
