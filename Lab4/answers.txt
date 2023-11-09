@@ -1,0 +1,39 @@
+Part 1: tf-idf (term frequency – inverse document frequency)
+
+    How does the tf-idf work? 
+
+        * tf-idf is a text feature extraction method
+        * tf
+            * we save all the words from a bunch of documents (d) into vectors 
+                * we don't add stop words to the vector (this, is, at, etc) 
+                * we only save the frequency of the words (tf)
+                * every dimension is a tf for a specific word/term
+            * after all vectors are created from every document a matrix of all the vectors is created (often sparse)
+        * idf
+            * the main problem with the tf approach is that it scales up frequent terms and scales 
+              down rare terms which can still be important. 
+            * if a word like algebra is used onece in a document it is probably a math document. But the low freqency will remove
+              the effect of the word.
+            * how to calc the idf: idf =  log ( |Z|/(1 + |{d: t of d}| ) )
+              where |Z| is the total number of documents and |{d: t of d}| is the number of documents where the term t occurs.
+            * 
+        * tf-idf = tf * idf
+
+    Document similarity
+
+        * the similarity of documents can be measured by using the cosine similarity formula 
+
+        * suppose we have a document with the word “sky” appearing 200 times and another document with
+          the word “sky” appearing 50, the Euclidean distance between them will be high but the angle will
+          still be small because they are pointing to the same direction. This is what matters when we are
+          comparing documents
+
+        * the cosine similarity values for different documents, 1 (same direction), 0 (90 deg.), -1 (opposite directions)
+
+    Classifying text
+
+        * One ML method is for classifying text is multinomial naïve Bayes. 
+        * What we have to do to use the multinomial naïve Bayes method is to first create a tf-idf of the documents
+          then we can create our predicitive model by passing the tf-idf to the multinomial naive Bayes classifier
+
+Part 2: Sentiment analysis
