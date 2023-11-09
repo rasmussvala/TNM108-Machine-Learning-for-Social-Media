@@ -9,8 +9,22 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import cross_val_score
+from sklearn import svm
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.metrics import mean_squared_error
 
-df = pd.read_csv("Lab3\data_cars.csv", header=None)
+
+df = pd.read_csv("data_cars.csv", header=None)
 for i in range(len(df.columns)):
     df[i] = df[i].astype("category")
 df.head()
@@ -69,8 +83,22 @@ clf = KNeighborsClassifier(weights="distance", n_neighbors=5)
 y_pred = cross_val_predict(clf, X, Y, cv=cv)
 CalcMeasures(method, y_pred, Y)
 
+method = "decision tree regression"
+tree = DecisionTreeRegressor(random_state=0)
+y_pred = cross_val_predict(tree, X,Y, cv=cv)
+CalcMeasures(method, y_pred, Y)
+
+from sklearn.ensemble import RandomForestClassifier
+method = 'Random Forest Tree'
+clf = RandomForestClassifier(n_estimators=50, max_depth=None, min_samples_split=2, random_state=0)
+y_pred = cross_val_predict(clf, X, Y, cv=cv)
+CalcMeasures(method, y_pred, Y)
+
+print("\n\ndf_f1:")
 print(df_f1)
+print("\n\ndf_precision")
 print(df_precision)
+print("\n\ndf_recall")
 print(df_recall)
 
 labels_counts = df[6].value_counts()
