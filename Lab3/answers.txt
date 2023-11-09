@@ -1,6 +1,6 @@
 PART 1: Bayes Classification
 
-Simplicity: It is a simple and fast classification algorithm suitable for high-dimensional datasets.Simplicity: It is a simple and fast classification algorithm suitable for high-dimensional datasets.
+Simplicity: It is a simple and fast classification algorithm suitable for high-dimensional datasets.
 
 Bayesian Foundation: It is based on Bayesian classification methods, using Bayes's theorem to calculate conditional probabilities.
 
@@ -25,7 +25,7 @@ PART 2
     in building the unknown parts of the face?
 
     There is no clear winner on who has the better performance and you could argue that in some cases a algorithm performs better
-    and in other cases in performs worse. But the algorithm we think have the most reliable result is the Ridge algorithm.This
+    and in other cases in performs worse. But the algorithm we think have the most reliable result is the Ridge algorithm. This
     is because we think this algorithm follows the lines of the face better then the rest of the algorithms. 
     
 3. How do you interpret the results?
@@ -50,7 +50,7 @@ PART 2
 4. How could performance of random forest be improved?
 
     To improve the performance of the random forest you could create a "boosted classifier" that simply give higher importance 
-    or weight to classifier that perform well. 
+    or weight to classifier that perform well. Or maybe just have a bigger forest. 
 
 PART 3
 
@@ -65,4 +65,5 @@ PART 3
 
 3. Find out if there are ML algorithms that perform better on the data cars.csv data set
 
-    hej 
+    
+    
