@@ -34,12 +34,9 @@ text_clf = Pipeline(
 )
 text_clf.fit(twenty_train.data, twenty_train.target)
 
-
-
 docs_test = twenty_test.data
 predicted = text_clf.predict(docs_test)
 print("multinomialBC accuracy ", np.mean(predicted == twenty_test.target))
-
 
 text_clf = Pipeline(
     [
@@ -68,16 +65,17 @@ print(
     )
 )
 
-print(metrics.classification_report(twenty_test.target, predicted, target_names=twenty_test.target_names))
-
-
-
 print(
     metrics.classification_report(
         twenty_test.target, predicted, target_names=twenty_test.target_names
     )
 )
 
+print(
+    metrics.classification_report(
+        twenty_test.target, predicted, target_names=twenty_test.target_names
+    )
+)
 
 # Parameter tuning using grid search
 parameters = {

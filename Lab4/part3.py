@@ -14,10 +14,10 @@ text = text4
 print("\nSummarize (ratio):")
 print(summarize(text, ratio=0.3))
 
-#print("\nSummarize (words):")
-#print(summarize(text1, words=50))
+# print("\nSummarize (words):")
+# print(summarize(text1, words=50))
 
 
-print("\n\nKeywords:\n",keywords.keywords(text))
+print("\n\nKeywords:\n", keywords.keywords(text))
 # to print the top 3 keywords
-print("\n\nTop 3 Keywords:\n",keywords.keywords(text,words=3))
+print("\n\nTop 3 Keywords:\n", keywords.keywords(text, words=3))
