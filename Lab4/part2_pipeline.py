@@ -1,4 +1,5 @@
 import sys, os
+from matplotlib.pyplot import clf
 
 os.system("cls")
 import sklearn
