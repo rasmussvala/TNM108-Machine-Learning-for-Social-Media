@@ -3,9 +3,11 @@ print("Hej")
 
 # Loading the 20 newsgroup dataset
 categories = ['alt.atheism','soc.religion.christian','comp.graphics','sci.med']
+
 twenty_train = fetch_20newsgroups(subset='train',categories=categories, shuffle=True, random_state=42)
 twenty_test = fetch_20newsgroups(subset='test',categories=categories, shuffle=True, random_state=42)
 
+print("Hej")
 
 
 # Building a pipeline
@@ -46,7 +48,6 @@ from sklearn import metrics
 print(metrics.classification_report(twenty_test.target, predicted,
  target_names=twenty_test.target_names))
 
-from sklearn import metrics
 print(metrics.classification_report(twenty_test.target, predicted, target_names=twenty_test.target_names))
 
 
@@ -54,7 +55,6 @@ print(metrics.classification_report(twenty_test.target, predicted, target_names=
 
 
 # Parameter tuning using grid search
-from sklearn.model_selection import GridSearchCV
 parameters = {
  'vect__ngram_range': [(1, 1), (1, 2)],
  'tfidf__use_idf': (True, False),
