@@ -1,19 +1,25 @@
 import sys, os
-os.system('cls')
+
+os.system("cls")
 import sklearn
 from sklearn.datasets import load_files
+
 # import CountVectorizer, nltk
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk
-nltk.download('punkt')
+
+nltk.download("punkt")
 
 # Convert raw frequency counts into TF-IDF (Term Frequency -- Inverse Document Frequency) values
 from sklearn.feature_extraction.text import TfidfTransformer
+
 # Split data into training and test sets
 from sklearn.model_selection import train_test_split
-# Now ready to build a classifier. 
+
+# Now ready to build a classifier.
 # We will use Multinominal Naive Bayes as our model
 from sklearn.naive_bayes import MultinomialNB
+
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 
@@ -22,9 +28,10 @@ from sklearn.preprocessing import StandardScaler
 
 # ------------ Load movie_reviews corpus data through sklearn ---------
 
-moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews'
+# moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews'
+moviedir = r"C:\Users\Rasmus\Desktop\Skola\MT4B\Maskininlärning för sociala medier - TNM108\TNM108\Lab4\movie_reviews"
 
-# loading all files. 
+# loading all files.
 movie = load_files(moviedir, shuffle=True)
 
 len(movie.data)
@@ -32,7 +39,7 @@ len(movie.data)
 # target names ("classes") are automatically generated from subfolder names
 movie.target_names
 
-# First file seems to be about a Schwarzenegger movie. 
+# First file seems to be about a Schwarzenegger movie.
 movie.data[0][:500]
 
 # first file is in "neg" folder
@@ -42,17 +49,19 @@ movie.filenames[0]
 movie.target[0]
 
 # Three tiny "documents"
-docs = ['A rose is a rose is a rose is a rose.',
-        'Oh, what a fine day it is.',
-        "A day ain't over till it's truly over."]
+docs = [
+    "A rose is a rose is a rose is a rose.",
+    "Oh, what a fine day it is.",
+    "A day ain't over till it's truly over.",
+]
 
-        # Initialize a CountVectorizer to use NLTK's tokenizer instead of its 
-#    default one (which ignores punctuation and stopwords). 
-# Minimum document frequency set to 1. 
+# Initialize a CountVectorizer to use NLTK's tokenizer instead of its
+#    default one (which ignores punctuation and stopwords).
+# Minimum document frequency set to 1.
 fooVzer = CountVectorizer(min_df=1, tokenizer=nltk.word_tokenize)
 
 # .fit_transform does two things:
-# (1) fit: adapts fooVzer to the supplied text data (rounds up top words into vector space) 
+# (1) fit: adapts fooVzer to the supplied text data (rounds up top words into vector space)
 # (2) transform: creates and returns a count-vectorized output of docs
 docs_counts = fooVzer.fit_transform(docs)
 
@@ -62,7 +71,7 @@ fooVzer.vocabulary_
 # docs_counts has a dimension of 3 (document count) by 16 (# of unique words)
 docs_counts.shape
 
-# this vector is small enough to view in a full, non-sparse form! 
+# this vector is small enough to view in a full, non-sparse form!
 docs_counts.toarray()
 
 fooTfmer = TfidfTransformer()
@@ -71,7 +80,7 @@ fooTfmer = TfidfTransformer()
 docs_tfidf = fooTfmer.fit_transform(docs_counts)
 
 # TF-IDF values
-# raw counts have been normalized against document length, 
+# raw counts have been normalized against document length,
 # terms that are found across many docs are weighted down ('a' vs. 'rose')
 docs_tfidf.toarray()
 
@@ -83,27 +92,30 @@ newdocs = ["I have a rose and a lily.", "What a beautiful day."]
 newdocs_counts = fooVzer.transform(newdocs)
 newdocs_counts.toarray()
 
-# Again, transform using tfidf 
+# Again, transform using tfidf
 newdocs_tfidf = fooTfmer.transform(newdocs_counts)
 newdocs_tfidf.toarray()
 
-docs_train, docs_test, y_train, y_test = train_test_split(movie.data, movie.target, 
-                                                          test_size = 0.20, random_state = 12)
+docs_train, docs_test, y_train, y_test = train_test_split(
+    movie.data, movie.target, test_size=0.20, random_state=12
+)
 
 # initialize CountVectorizer
-movieVzer= CountVectorizer(min_df=2, tokenizer=nltk.word_tokenize, max_features=3000) # use top 3000 words only. 78.25% acc.
+movieVzer = CountVectorizer(
+    min_df=2, tokenizer=nltk.word_tokenize, max_features=3000
+)  # use top 3000 words only. 78.25% acc.
 # movieVzer = CountVectorizer(min_df=2, tokenizer=nltk.word_tokenize)         # use all 25K words. Higher accuracy
 
-# fit and tranform using training text 
+# fit and tranform using training text
 docs_train_counts = movieVzer.fit_transform(docs_train)
 
 # 'screen' is found in the corpus, mapped to index 2290
-movieVzer.vocabulary_.get('screen')
+movieVzer.vocabulary_.get("screen")
 
 # Likewise, Mr. Steven Seagal is present...
-movieVzer.vocabulary_.get('seagal')
+movieVzer.vocabulary_.get("seagal")
 
-# huge dimensions! 1,600 documents, 3K unique terms. 
+# huge dimensions! 1,600 documents, 3K unique terms.
 docs_train_counts.shape
 
 # Convert raw frequency counts into TF-IDF values
@@ -129,13 +141,23 @@ cm = confusion_matrix(y_test, y_pred)
 cm
 
 # very short and fake movie reviews
-reviews_new = ['This movie was excellent', 'Absolute joy ride', 
-            'Steven Seagal was terrible', 'Steven Seagal shone through.', 
-              'This was certainly a movie', 'Two thumbs up', 'I fell asleep halfway through', 
-              "We can't wait for the sequel!!", '!', '?', 'I cannot recommend this highly enough', 
-              'instant classic.', 'Steven Seagal was amazing. His performance was Oscar-worthy.']
+reviews_new = [
+    "This movie was excellent",
+    "Absolute joy ride",
+    "Steven Seagal was terrible",
+    "Steven Seagal shone through.",
+    "This was certainly a movie",
+    "Two thumbs up",
+    "I fell asleep halfway through",
+    "We can't wait for the sequel!!",
+    "!",
+    "?",
+    "I cannot recommend this highly enough",
+    "instant classic.",
+    "Steven Seagal was amazing. His performance was Oscar-worthy.",
+]
 
-reviews_new_counts = movieVzer.transform(reviews_new)         # turn text into count vector
+reviews_new_counts = movieVzer.transform(reviews_new)  # turn text into count vector
 reviews_new_tfidf = movieTfmer.transform(reviews_new_counts)  # turn into tfidf vector
 
 # have classifier make a prediction
@@ -143,5 +165,4 @@ pred = clf.predict(reviews_new_tfidf)
 
 # print out results
 for review, category in zip(reviews_new, pred):
-    print('%r => %s' % (review, movie.target_names[category]))
-
+    print("%r => %s" % (review, movie.target_names[category]))
