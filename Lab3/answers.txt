@@ -65,5 +65,10 @@ PART 3
 
 3. Find out if there are ML algorithms that perform better on the data cars.csv data set
 
+
+desison tree and randome forest
+why random forest better the desicion tess
+tree har dålig säkerhet desicon bra
+
     
     

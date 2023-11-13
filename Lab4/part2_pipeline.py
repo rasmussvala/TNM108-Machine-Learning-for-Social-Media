@@ -29,9 +29,10 @@ import numpy as np
 
 
 
-moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews'
+
 
 # loading all files. 
+moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews'
 movie = load_files(moviedir, shuffle=True)
 
 #len(movie.data)
@@ -136,7 +137,6 @@ movie_data_train, movie_data_test, movie_target_train, movie_target_test = train
 # cm
 
 # pipeline ===============================================================
-
 movie_clf = Pipeline([
  ('vect', CountVectorizer()),
  ('tfidf', TfidfTransformer()),
@@ -152,17 +152,15 @@ print(metrics.classification_report(movie_target_test, predicted, target_names=m
 
 
 
-
-
 # Parameter tuning using grid search
 parameters = {
  'vect__ngram_range': [(1, 1), (1, 2)],
  'tfidf__use_idf': (True, False),
  'clf__alpha': (1e-2, 1e-3),
 }
-gs_clf = GridSearchCV(movie_clf, parameters, cv=5, iid=False, n_jobs=-1)
+gs_clf = GridSearchCV(movie_clf, parameters, cv=5, n_jobs=-1)
 
-gs_clf = gs_clf.fit(movie_data_train[:400], movie_target_train[:400])
+grid_search_clf = gs_clf.fit(movie_data_train[:400], movie_target_train[:400])
 
 # ======== ===============================================================
 
@@ -181,7 +179,7 @@ for param_name in sorted(parameters.keys()):
  print("%s: %r" % (param_name, gs_clf.best_params_[param_name]))
 
 # have classifier make a prediction
-pred = clf.predict(reviews_new)
+pred = gs_clf .predict(reviews_new)
 
 # print out results
 print("\n\n\n============= Print out results =============")
