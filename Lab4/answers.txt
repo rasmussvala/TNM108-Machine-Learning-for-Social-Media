@@ -38,7 +38,25 @@ Part 1: tf-idf (term frequency – inverse document frequency)
 
 Part 2: Sentiment analysis
 
-  Show code 
+  * Building a pipeline
+
+      In order to make the vectorizer => transformer => classifier easier to work with, 
+      scikit-learn provides a Pipeline class that behaves like a compound classifier:
+
+      The names vect, tfidf and clf (classifier) are arbitrary. We will use them to perform grid 
+      search for suitable hyperparameters below. We can now train the model with a single command:
+
+  * Parameter tuning using grid search
+
+      Instead of tweaking the parameters of the various components of the chain, it is possible to run
+      an exhaustive search of the best parameters on a grid of possible values.
+      Obviously, such an exhaustive search can be expensive.
+
+  * Evaluating
+
+      As expected the confusion matrix shows that posts from the newsgroups on atheism and Christianity 
+      are more often confused for one another than with computer graphics
+    
 
 Part 3:  Text summarization
 

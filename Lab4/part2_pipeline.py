@@ -19,7 +19,7 @@ from sklearn import metrics
 # Parameter tuning using grid search
 from sklearn.model_selection import GridSearchCV
 
-# moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews' # wille's computer
+#moviedir = r'C:\Users\Wille\Documents\GitHub\TNM108\Lab4\movie_reviews' # wille's computer
 moviedir = r"Lab4\movie_reviews"  # rasmus' computer
 
 # loading all files.
