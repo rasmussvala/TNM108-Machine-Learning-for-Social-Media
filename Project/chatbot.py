@@ -1,6 +1,7 @@
 import pandas as pd
 import random
 
+# HEJ :D
 # Read the CSV file into a pandas DataFrame
 data = pd.read_csv("Conversation.csv")
 
