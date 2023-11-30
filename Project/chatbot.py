@@ -10,12 +10,14 @@ os.system("cls")  # clears console
 # Initialize df from excel file, needs bye
 print("File ID: ", end="")
 file_id = input()
-print("\n\nChatbot conversation")
-print("================================")
-if file_id == 0:
-    data_frame = pd.read_excel("conversations.xlsx")
+print("\n\nChatbot conversation using data from ", end='')
+if file_id == 1:
+    data_frame = pd.read_excel("humanconversation.xlsx")
+    print("humanconversation")
 else:
     data_frame = pd.read_excel("conversations.xlsx")
+    print("conversations")
+print("================================")
 
 # Main code
 data_frame["lemmatized_text"] = data_frame["question"].apply(text_normalization)
