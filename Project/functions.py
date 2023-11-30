@@ -1,4 +1,8 @@
 import nltk
+import numpy as np
+import random
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 import re
 import pandas as pd
 from nltk.stem import wordnet  # to perform Lemmitzation
@@ -71,10 +75,17 @@ def chat_tfidf(question, data_frame_lemma):
     question_tfidf = tfidf.transform([lemma]).toarray()
     data_frame_tfidf = pd.DataFrame(x_tfidf, columns=tfidf.get_feature_names_out())
     cos = 1 - pairwise_distances(data_frame_tfidf, question_tfidf, metric="cosine")
-    for i in cos:
-        print("cos: ", i)
-    index_value_in_data_frame = (
-        cos.argmax()
-    )  # fixa denna så den är lite random kring max
-    print("max: ", index_value_in_data_frame)
-    return index_value_in_data_frame
+
+    # argsort to get indices for sorting
+    cos_sorted_indices = np.argsort(cos, axis=None)[::-1]
+    cos_sorted = np.sort(cos, axis=None)[::-1]
+    best_answer_cos = cos_sorted[0]
+
+    nr_of_possible_answers = 10
+    answers_array_indices = []
+
+    for i in range(nr_of_possible_answers):
+        if best_answer_cos*0.8 <= cos_sorted[i]:
+            answers_array_indices.append(cos_sorted_indices[i])
+            # print("cos dist: ", cos_sorted[i])
+    return random.choice(answers_array_indices)

@@ -4,21 +4,20 @@ import os  # to clear console
 from functions import text_normalization, chat_tfidf
 from nltk.corpus import stopwords  # for stop words
 import nltk
-
 nltk.download("stopwords")
-
 os.system("cls")  # clears console
 
-# Initialize df from excel file, needs pip install openpyxl
-data_frame = pd.read_excel("conversations.xlsx")
-
-# Replace NaN cells with the values from the cell above
-# data_frame.ffill(axis=0, inplace=True)
-
-# print(chat_tfidf(["are you in school"], data_frame))
+# Initialize df from excel file, needs bye
+print("File ID: ", end="")
+file_id = input()
+print("\n\nChatbot conversation")
+print("================================")
+if file_id == 0:
+    data_frame = pd.read_excel("conversations.xlsx")
+else:
+    data_frame = pd.read_excel("conversations.xlsx")
 
 # Main code
-
 data_frame["lemmatized_text"] = data_frame["question"].apply(text_normalization)
 
 # all the stop words we have
@@ -59,3 +58,16 @@ while not bye:
     index_answer = chat_tfidf(processed_question, data_frame["lemmatized_text"])
     # print(index_value)
     print("ChatBoi:", data_frame["answer"].loc[index_answer])
+    
+    tfidf_vectorizer = TfidfVectorizer(stop_words="english")
+
+    # Fit and transform the vectorizer on the given sentence
+    tfidf_matrix = tfidf_vectorizer.fit_transform([data_frame["answer"].loc[index_answer]])
+
+    # Get the feature names (words) from the vectorizer
+    feature_names = tfidf_vectorizer.get_feature_names_out()
+
+    # Find the word with the highest TF-IDF score
+    max_tfidf_index = tfidf_matrix.argmax()
+    keyword = feature_names[max_tfidf_index]
+    print(keyword)
