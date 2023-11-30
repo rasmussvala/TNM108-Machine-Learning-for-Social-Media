@@ -12,11 +12,14 @@ print("File ID: ", end="")
 file_id = input()
 print("\n\nChatbot conversation using data from ", end='')
 if file_id == 1:
-    data_frame = pd.read_excel("humanconversation.xlsx")
-    print("humanconversation")
+    data_frame = pd.read_excel("datasets/humanConversation.xlsx")
+    print("human conversation")
+elif file_id == 2:
+    data_frame = pd.read_excel("datasets/3KConversation.xlsx")
+    print("3k conversation")
 else:
-    data_frame = pd.read_excel("conversations.xlsx")
-    print("conversations")
+    data_frame = pd.read_excel("datasets/allConversations.xlsx")
+    print("all conversations")
 print("================================")
 
 # Main code
