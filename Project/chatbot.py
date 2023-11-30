@@ -4,19 +4,23 @@ import os  # to clear console
 from functions import text_normalization, chat_tfidf
 from nltk.corpus import stopwords  # for stop words
 import nltk
+
 nltk.download("stopwords")
 os.system("cls")  # clears console
 
 # Initialize df from excel file, needs bye
 print("File ID: ", end="")
 file_id = input()
-print("\n\nChatbot conversation using data from ", end='')
-if file_id == 1:
+print("\n\nChatbot conversation using data from ", end="")
+if file_id == "1":
     data_frame = pd.read_excel("datasets/humanConversation.xlsx")
     print("human conversation")
-elif file_id == 2:
+elif file_id == "2":
     data_frame = pd.read_excel("datasets/3KConversation.xlsx")
     print("3k conversation")
+elif file_id == "3":
+    data_frame = pd.read_excel("datasets/topicalChatFiltered.xlsx")
+    print("topical chat")
 else:
     data_frame = pd.read_excel("datasets/allConversations.xlsx")
     print("all conversations")
@@ -63,4 +67,3 @@ while not bye:
     index_answer = chat_tfidf(processed_question, data_frame["lemmatized_text"])
     # print(index_value)
     print("ChatBoi:", data_frame["answer"].loc[index_answer])
-    
