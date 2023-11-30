@@ -59,15 +59,3 @@ while not bye:
     # print(index_value)
     print("ChatBoi:", data_frame["answer"].loc[index_answer])
     
-    tfidf_vectorizer = TfidfVectorizer(stop_words="english")
-
-    # Fit and transform the vectorizer on the given sentence
-    tfidf_matrix = tfidf_vectorizer.fit_transform([data_frame["answer"].loc[index_answer]])
-
-    # Get the feature names (words) from the vectorizer
-    feature_names = tfidf_vectorizer.get_feature_names_out()
-
-    # Find the word with the highest TF-IDF score
-    max_tfidf_index = tfidf_matrix.argmax()
-    keyword = feature_names[max_tfidf_index]
-    print(keyword)
