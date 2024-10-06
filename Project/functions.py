@@ -1,8 +1,10 @@
 import nltk
 import numpy as np
 import random
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
+
+nltk.download("averaged_perceptron_tagger")
+nltk.download("wordnet")
+nltk.download("punkt_tab")
 import re
 import pandas as pd
 from nltk.stem import wordnet  # to perform Lemmitzation

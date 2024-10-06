@@ -9,7 +9,7 @@ nltk.download("stopwords")
 os.system("cls")  # clears console
 
 # Initialize df from excel file, needs bye
-print("File ID: ", end="")
+print("File ID (1, 2, 3 or 4): ", end="")
 file_id = input()
 print("\n\nChatbot conversation using data from ", end="")
 if file_id == "1":
